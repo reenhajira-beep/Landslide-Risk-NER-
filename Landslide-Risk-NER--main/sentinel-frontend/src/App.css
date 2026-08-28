@@ -1,0 +1,2239 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #02030a;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+
+  color: #f6f8ff;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #02030a;
+
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.sentinel-galaxy-app {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   GALAXY HERO
+========================================================= */
+
+.galaxy-hero {
+  position: relative;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    url("/galaxy-bg.jpg")
+    center center /
+    cover
+    no-repeat;
+
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.hero-dark-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 2, 9, 0.24),
+      rgba(0, 2, 9, 0.10) 45%,
+      rgba(1, 3, 11, 0.76)
+    );
+}
+
+
+/* =========================================================
+   MOVING STAR OVERLAY
+========================================================= */
+
+.moving-stars {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.92) 0 1px,
+      transparent 1.4px
+    );
+}
+
+
+.stars-one {
+  background-size:
+    190px 190px;
+
+  opacity: .20;
+
+  animation:
+    starMoveA
+    70s
+    linear
+    infinite;
+}
+
+
+.stars-two {
+  background-size:
+    310px 310px;
+
+  opacity: .12;
+
+  animation:
+    starMoveB
+    105s
+    linear
+    infinite;
+}
+
+
+@keyframes starMoveA {
+  to {
+    background-position:
+      350px
+      600px;
+  }
+}
+
+
+@keyframes starMoveB {
+  to {
+    background-position:
+      -500px
+      800px;
+  }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.top-navbar {
+  position: relative;
+
+  z-index: 20;
+
+  width:
+    min(
+      1500px,
+      92%
+    );
+
+  height: 78px;
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .11
+    );
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.top-brand {
+  justify-self: start;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  cursor: pointer;
+
+  text-align: left;
+}
+
+
+.brand-orbit {
+  width: 35px;
+  height: 35px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #53dbff,
+      #765cff,
+      #f56fca
+    );
+
+  color: white;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 0 25px
+    rgba(
+      79,
+      143,
+      255,
+      .55
+    );
+}
+
+
+.top-brand strong {
+  display: block;
+
+  font-size: 12px;
+
+  letter-spacing:
+    .7px;
+}
+
+
+.top-brand span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #bec6dc;
+
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
+
+.desktop-nav {
+  display: flex;
+
+  gap: 26px;
+}
+
+
+.desktop-nav button {
+  position: relative;
+
+  padding:
+    9px
+    2px;
+
+  border: 0;
+
+  background: none;
+
+  color: #b8bfd4;
+
+  cursor: pointer;
+
+  font-size: 9px;
+
+  transition:
+    color
+    .2s ease;
+}
+
+
+.desktop-nav button:hover,
+.desktop-nav button.active {
+  color: white;
+}
+
+
+.desktop-nav button.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #63dbff,
+      #e169ff,
+      transparent
+    );
+}
+
+
+.nav-alert-count {
+  position: absolute;
+
+  top: -1px;
+  right: -16px;
+
+  min-width: 17px;
+  height: 17px;
+
+  display: grid;
+
+  place-items: center;
+
+  padding:
+    0
+    4px;
+
+  border-radius: 99px;
+
+  background:
+    #ef425a;
+
+  color: white;
+
+  font-size: 7px;
+
+  box-shadow:
+    0 0 15px
+    rgba(
+      239,
+      66,
+      90,
+      .7
+    );
+}
+
+
+/* =========================================================
+   NAV CTA
+========================================================= */
+
+.nav-cta {
+  justify-self: end;
+
+  padding:
+    9px
+    16px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .19
+    );
+
+  border-radius: 7px;
+
+  background:
+    rgba(
+      5,
+      8,
+      20,
+      .30
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 9px;
+
+  transition:
+    .25s ease;
+}
+
+
+.nav-cta:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .09
+    );
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+  position: relative;
+
+  z-index: 5;
+
+  width:
+    min(
+      900px,
+      90%
+    );
+
+  margin:
+    145px
+    auto
+    0;
+
+  text-align: center;
+}
+
+
+.hero-eyebrow {
+  display: inline-block;
+
+  color: #e0e4f2;
+
+  font-size: 8px;
+
+  letter-spacing:
+    2.8px;
+}
+
+
+/* =========================================================
+   SENTINEL TITLE
+========================================================= */
+
+.hero-content h1 {
+  margin:
+    12px
+    0
+    0;
+
+  font-size:
+    clamp(
+      72px,
+      12vw,
+      160px
+    );
+
+  font-weight: 700;
+
+  line-height: .9;
+
+  letter-spacing:
+    11px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #e2f1ff 55%,
+      #8fb8ff
+    );
+
+  -webkit-background-clip:
+    text;
+
+  background-clip:
+    text;
+
+  color: transparent;
+
+  text-shadow:
+    0 0 45px
+    rgba(
+      93,
+      161,
+      255,
+      .20
+    );
+}
+
+
+/* =========================================================
+   ENERGY LINE
+========================================================= */
+
+.energy-line {
+  position: relative;
+
+  width: 76%;
+
+  height: 2px;
+
+  margin:
+    14px
+    auto
+    19px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #5ce8ff,
+      #ffffff,
+      #ec62ff,
+      transparent
+    );
+
+  box-shadow:
+    0 0 13px
+    rgba(
+      99,
+      225,
+      255,
+      .9
+    ),
+    0 0 28px
+    rgba(
+      212,
+      79,
+      255,
+      .46
+    );
+}
+
+
+.energy-line span {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 35px;
+  height: 35px;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .3
+    );
+
+  filter:
+    blur(15px);
+}
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero-content h2 {
+  margin: 0;
+
+  color: #f8f9ff;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  letter-spacing:
+    1.6px;
+}
+
+
+.hero-content p {
+  max-width: 650px;
+
+  margin:
+    25px
+    auto
+    0;
+
+  color: #c5cad9;
+
+  font-size: 10px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+  margin-top: 28px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+}
+
+
+.hero-primary-button,
+.hero-secondary-button {
+  padding:
+    11px
+    18px;
+
+  border-radius: 22px;
+
+  cursor: pointer;
+
+  font-size: 9px;
+
+  transition:
+    transform
+    .25s ease,
+    box-shadow
+    .25s ease;
+}
+
+
+.hero-primary-button {
+  border: none;
+
+  background:
+    #ffffff;
+
+  color: #10121c;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 30px
+    rgba(
+      0,
+      0,
+      0,
+      .25
+    );
+}
+
+
+.hero-secondary-button {
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .17
+    );
+
+  background:
+    rgba(
+      4,
+      7,
+      17,
+      .34
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  color: #edf0fa;
+}
+
+
+.hero-primary-button:hover,
+.hero-secondary-button:hover {
+  transform:
+    translateY(-3px);
+}
+
+
+/* =========================================================
+   HERO LIVE STATUS
+========================================================= */
+
+.hero-live-status {
+  position: absolute;
+
+  z-index: 5;
+
+  bottom: 45px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  color: #aeb6cb;
+
+  font-size: 7px;
+}
+
+
+.hero-live-status strong {
+  color: #66efad;
+}
+
+
+.live-indicator {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    #50e89f;
+
+  box-shadow:
+    0 0 12px
+    #50e89f;
+
+  animation:
+    livePulse
+    1.5s
+    infinite;
+}
+
+
+@keyframes livePulse {
+  50% {
+    box-shadow:
+      0 0 23px
+      #50e89f;
+  }
+}
+
+
+/* =========================================================
+   SCROLL DOWN
+========================================================= */
+
+.scroll-down {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 50%;
+  bottom: 12px;
+
+  transform:
+    translateX(-50%);
+
+  width: 31px;
+  height: 31px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .18
+    );
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      2,
+      4,
+      10,
+      .33
+    );
+
+  color: white;
+
+  cursor: pointer;
+
+  animation:
+    scrollBounce
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes scrollBounce {
+  50% {
+    transform:
+      translateX(-50%)
+      translateY(5px);
+  }
+}
+
+
+/* =========================================================
+   DASHBOARD WORLD
+========================================================= */
+
+.dashboard-world {
+  position: relative;
+
+  padding:
+    80px
+    5%
+    100px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(
+        71,
+        82,
+        180,
+        .18
+      ),
+      transparent 28%
+    ),
+    linear-gradient(
+      #050712,
+      #02030a
+    );
+}
+
+
+/* =========================================================
+   GLOBAL ERROR
+========================================================= */
+
+.global-error {
+  width:
+    min(
+      1450px,
+      100%
+    );
+
+  margin:
+    0
+    auto
+    25px;
+
+  padding: 12px;
+
+  border:
+    1px solid
+    rgba(
+      239,
+      70,
+      96,
+      .25
+    );
+
+  border-radius: 9px;
+
+  background:
+    rgba(
+      100,
+      18,
+      36,
+      .28
+    );
+
+  color: #ec98a7;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   DASHBOARD SECTION
+========================================================= */
+
+.dashboard-section {
+  width:
+    min(
+      1450px,
+      100%
+    );
+
+  margin:
+    0
+    auto
+    75px;
+
+  scroll-margin-top:
+    20px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  margin-bottom: 17px;
+}
+
+
+.section-header > div > span {
+  color: #78819b;
+
+  font-size: 7px;
+
+  letter-spacing:
+    1.7px;
+}
+
+
+.section-header h2 {
+  margin:
+    5px
+    0;
+
+  color: #f5f7ff;
+
+  font-size: 27px;
+}
+
+
+.section-header p {
+  margin: 0;
+
+  color: #777f95;
+
+  font-size: 9px;
+}
+
+
+.section-header button {
+  padding:
+    8px
+    12px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .08
+    );
+
+  border-radius: 7px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .03
+    );
+
+  color: #abb2c5;
+
+  cursor: pointer;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   GLASS BASE
+========================================================= */
+
+.glass-card,
+.counter-card,
+.value-tile,
+.alert-card,
+.location-card,
+.mini-value {
+  border:
+    1px solid
+    rgba(
+      111,
+      133,
+      218,
+      .13
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        17,
+        25,
+        49,
+        .88
+      ),
+      rgba(
+        6,
+        9,
+        21,
+        .93
+      )
+    );
+
+  backdrop-filter:
+    blur(20px);
+
+  box-shadow:
+    0 22px 45px
+    rgba(
+      0,
+      0,
+      0,
+      .25
+    ),
+    inset
+    0
+    1px
+    rgba(
+      255,
+      255,
+      255,
+      .025
+    );
+}
+
+
+/* =========================================================
+   OVERVIEW GRID
+========================================================= */
+
+.overview-grid {
+  display: grid;
+
+  grid-template-columns:
+    1.6fr
+    .8fr;
+
+  gap: 12px;
+}
+
+
+.main-overview-card {
+  padding: 21px;
+
+  border-radius: 14px;
+}
+
+
+.overview-top {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items: flex-start;
+
+  gap: 25px;
+}
+
+
+.card-eyebrow {
+  color: #737c98;
+
+  font-size: 7px;
+
+  letter-spacing:
+    1.2px;
+}
+
+
+.overview-top h3 {
+  margin:
+    7px
+    0
+    2px;
+
+  color: #f7f8ff;
+
+  font-size: 28px;
+}
+
+
+.overview-top p {
+  margin: 0;
+
+  color: #798199;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   RISK GAUGE
+========================================================= */
+
+.risk-gauge {
+  width: 125px;
+  height: 125px;
+
+  padding: 9px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  filter:
+    drop-shadow(
+      0 0 24px
+      rgba(
+        117,
+        104,
+        255,
+        .27
+      )
+    );
+}
+
+
+.risk-gauge-core {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    #070a15;
+}
+
+
+.risk-gauge-core strong {
+  color: white;
+
+  font-size: 28px;
+}
+
+
+.risk-gauge-core span {
+  color: #7d849d;
+
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   ENVIRONMENT GRID
+========================================================= */
+
+.environment-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap: 7px;
+
+  margin-top: 18px;
+}
+
+
+.value-tile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px;
+
+  border-radius: 9px;
+}
+
+
+.value-icon {
+  font-size: 16px;
+}
+
+
+.value-tile div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+.value-tile small {
+  color: #747c95;
+
+  font-size: 7px;
+}
+
+
+.value-tile strong {
+  margin-top: 3px;
+
+  color: #edf0fb;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   COUNTERS
+========================================================= */
+
+.overview-counter-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      1fr
+    );
+
+  gap: 8px;
+}
+
+
+.counter-card {
+  position: relative;
+
+  min-height: 120px;
+
+  padding: 15px;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+}
+
+
+.counter-card span {
+  color: #81889e;
+
+  font-size: 8px;
+}
+
+
+.counter-card strong {
+  display: block;
+
+  margin-top: 8px;
+
+  color: white;
+
+  font-size: 32px;
+}
+
+
+.counter-graph {
+  position: absolute;
+
+  left: 15px;
+  right: 15px;
+  bottom: 14px;
+
+  height: 28px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 4px;
+}
+
+
+.counter-graph i {
+  flex: 1;
+
+  border-radius:
+    3px
+    3px
+    0
+    0;
+
+  opacity: .7;
+}
+
+
+.counter-graph i:nth-child(1) {
+  height: 22%;
+}
+
+
+.counter-graph i:nth-child(2) {
+  height: 52%;
+}
+
+
+.counter-graph i:nth-child(3) {
+  height: 35%;
+}
+
+
+.counter-graph i:nth-child(4) {
+  height: 78%;
+}
+
+
+.counter-graph i:nth-child(5) {
+  height: 58%;
+}
+
+
+.counter-card.high
+.counter-graph i {
+  background:
+    #f24962;
+}
+
+
+.counter-card.moderate
+.counter-graph i {
+  background:
+    #ffb24c;
+}
+
+
+.counter-card.low
+.counter-graph i {
+  background:
+    #40da97;
+}
+
+
+.counter-card.total
+.counter-graph i {
+  background:
+    #6d8cff;
+}
+
+
+/* =========================================================
+   RAIN FEATURE
+========================================================= */
+
+.rain-feature {
+  margin-top: 12px;
+
+  padding: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  border-radius: 12px;
+}
+
+
+.rain-feature h3 {
+  margin:
+    6px
+    0
+    10px;
+
+  font-size: 16px;
+}
+
+
+.rain-feature > div > strong {
+  color: #eff2ff;
+
+  font-size: 13px;
+}
+
+
+.rain-feature p {
+  margin:
+    3px
+    0
+    0;
+
+  color: #75809a;
+
+  font-size: 8px;
+}
+
+
+.rain-feature-value {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 8px;
+}
+
+
+.rain-feature-value > span {
+  font-size: 27px;
+}
+
+
+.rain-feature-value strong {
+  font-size: 37px !important;
+}
+
+
+.rain-feature-value small {
+  color: #8c94a8;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.map-card {
+  padding: 12px;
+
+  border-radius: 14px;
+}
+
+
+.map-wrapper {
+  width: 100%;
+  height: 630px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+}
+
+
+.leaflet-container {
+  background: #050814;
+}
+
+
+.map-legend {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 15px;
+
+  margin:
+    -39px
+    0
+    16px;
+}
+
+
+.legend {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: #8a93a9;
+
+  font-size: 8px;
+}
+
+
+.legend i {
+  width: 7px;
+  height: 7px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   ALERT STATUS
+========================================================= */
+
+.alerts-title-row {
+  margin-bottom: 13px;
+}
+
+
+.active-alert-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    7px
+    11px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .07
+    );
+
+  border-radius: 99px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .025
+    );
+
+  color: #8c94a9;
+
+  font-size: 8px;
+}
+
+
+.active-alert-badge.danger {
+  color: #f17789;
+
+  border-color:
+    rgba(
+      242,
+      69,
+      94,
+      .20
+    );
+
+  background:
+    rgba(
+      242,
+      69,
+      94,
+      .07
+    );
+}
+
+
+.active-alert-badge i {
+  width: 6px;
+  height: 6px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+
+  background: #6b7385;
+}
+
+
+.active-alert-badge.danger i {
+  background: #ef4960;
+
+  box-shadow:
+    0 0 10px
+    #ef4960;
+}
+
+
+/* =========================================================
+   ALL SAFE
+========================================================= */
+
+.all-safe-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  border-radius: 11px;
+}
+
+
+.safe-check {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      67,
+      215,
+      147,
+      .11
+    );
+
+  color: #57dfa1;
+
+  font-size: 17px;
+}
+
+
+.all-safe-card strong {
+  color: #9de5bf;
+
+  font-size: 10px;
+}
+
+
+.all-safe-card p {
+  margin:
+    4px
+    0
+    0;
+
+  color: #748179;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   ALERT GRID
+========================================================= */
+
+.alerts-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        300px,
+        1fr
+      )
+    );
+
+  gap: 10px;
+}
+
+
+.alert-card {
+  display: grid;
+
+  grid-template-columns:
+    74px
+    1fr;
+
+  gap: 15px;
+
+  padding: 15px;
+
+  border-radius: 11px;
+
+  border-color:
+    rgba(
+      242,
+      67,
+      94,
+      .20
+    );
+}
+
+
+/* =========================================================
+   ALERT RADAR
+========================================================= */
+
+.alert-radar {
+  position: relative;
+
+  width: 64px;
+  height: 64px;
+
+  display: grid;
+
+  place-items: center;
+}
+
+
+.radar-core {
+  position: relative;
+
+  z-index: 5;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      242,
+      65,
+      90,
+      .12
+    );
+
+  color: #f55e74;
+}
+
+
+.radar-wave {
+  position: absolute;
+
+  width: 38px;
+  height: 38px;
+
+  border:
+    1px solid
+    rgba(
+      244,
+      82,
+      106,
+      .58
+    );
+
+  border-radius: 50%;
+
+  animation:
+    alertWave
+    2.5s
+    ease-out
+    infinite;
+}
+
+
+.wave-two {
+  animation-delay:
+    .8s;
+}
+
+
+.wave-three {
+  animation-delay:
+    1.6s;
+}
+
+
+@keyframes alertWave {
+  to {
+    width: 84px;
+    height: 84px;
+
+    opacity: 0;
+  }
+}
+
+
+.danger-label {
+  color: #ed6178;
+
+  font-size: 7px;
+
+  letter-spacing:
+    .7px;
+}
+
+
+.alert-card-content h3 {
+  margin:
+    5px
+    0
+    2px;
+
+  color: #f5f7ff;
+
+  font-size: 15px;
+}
+
+
+.alert-card-content p {
+  margin: 0;
+
+  color: #7d8499;
+
+  font-size: 8px;
+}
+
+
+.alert-value-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      1fr
+    );
+
+  gap: 6px;
+
+  margin-top: 11px;
+}
+
+
+/* =========================================================
+   MINI VALUE
+========================================================= */
+
+.mini-value {
+  padding: 8px;
+
+  border-radius: 7px;
+}
+
+
+.mini-value span {
+  display: block;
+
+  color: #747c92;
+
+  font-size: 7px;
+}
+
+
+.mini-value strong {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #eceffa;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   LOCATIONS
+========================================================= */
+
+.locations-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        250px,
+        1fr
+      )
+    );
+
+  gap: 9px;
+}
+
+
+.location-card {
+  padding: 13px;
+
+  border-radius: 10px;
+
+  transition:
+    transform
+    .25s ease,
+    border-color
+    .25s ease,
+    box-shadow
+    .25s ease;
+}
+
+
+.location-card:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(
+      113,
+      148,
+      255,
+      .25
+    );
+
+  box-shadow:
+    0 18px 35px
+    rgba(
+      0,
+      0,
+      0,
+      .28
+    );
+}
+
+
+.location-card-header {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-start;
+
+  gap: 8px;
+}
+
+
+.location-card-header h3 {
+  margin: 0;
+
+  color: #f4f6ff;
+
+  font-size: 11px;
+}
+
+
+.location-card-header div > span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #788198;
+
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   RISK PILL
+========================================================= */
+
+.risk-pill {
+  padding:
+    4px
+    6px;
+
+  border-radius: 5px;
+
+  font-size: 6px;
+
+  font-weight: 800;
+}
+
+
+.risk-pill.danger {
+  color: #f06c7f;
+
+  background:
+    rgba(
+      244,
+      70,
+      95,
+      .11
+    );
+}
+
+
+.risk-pill.warning {
+  color: #e7ad5e;
+
+  background:
+    rgba(
+      239,
+      166,
+      68,
+      .11
+    );
+}
+
+
+.risk-pill.safe {
+  color: #66d4a0;
+
+  background:
+    rgba(
+      66,
+      202,
+      142,
+      .10
+    );
+}
+
+
+/* =========================================================
+   LOCATION DATA
+========================================================= */
+
+.location-data {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      1fr
+    );
+
+  gap: 6px;
+
+  margin-top: 12px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-card {
+  padding: 40px;
+
+  color: #7d859b;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LEAFLET POPUP
+========================================================= */
+
+.sentinel-popup h3 {
+  margin:
+    0
+    0
+    3px;
+}
+
+
+.sentinel-popup p {
+  margin:
+    0
+    0
+    8px;
+
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (
+  max-width: 1000px
+) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .top-navbar {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .overview-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+@media (
+  max-width: 720px
+) {
+
+  .galaxy-hero {
+    background-attachment:
+      scroll;
+  }
+
+  .top-navbar {
+    width: 92%;
+  }
+
+  .hero-content {
+    margin-top: 130px;
+  }
+
+  .hero-content h1 {
+    letter-spacing: 4px;
+  }
+
+  .hero-content h2 {
+    font-size: 13px;
+  }
+
+  .hero-live-status {
+    width: 90%;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .environment-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+  .map-wrapper {
+    height: 460px;
+  }
+
+  .map-legend {
+    margin: 0 0 14px;
+
+    justify-content: flex-start;
+  }
+
+  .section-header {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+}
+
+
+@media (
+  max-width: 480px
+) {
+
+  .top-brand div:last-child {
+    display: none;
+  }
+
+  .hero-content h1 {
+    font-size: 58px;
+
+    letter-spacing: 2px;
+  }
+
+  .hero-content p {
+    font-size: 9px;
+  }
+
+  .overview-counter-grid {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .overview-top {
+    flex-direction: column;
+  }
+
+  .risk-gauge {
+    align-self: center;
+  }
+
+  .environment-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .rain-feature {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .alert-card {
+    grid-template-columns:
+      1fr;
+  }
+
+  .alert-radar {
+    margin: auto;
+  }
+
+}

@@ -1,0 +1,19 @@
+{
+  "model_type": "RandomForestClassifier",
+  "features": [
+    "rainfall_mm_hr",
+    "soil_moisture_pct",
+    "tilt_deg",
+    "vegetation_change_pct",
+    "satellite_risk_index"
+  ],
+  "target": "landslide_next_6h",
+  "training_rows": 1000,
+  "metrics": {
+    "accuracy": 0.815,
+    "precision": 0.8283,
+    "recall": 0.8039,
+    "f1_score": 0.8159,
+    "roc_auc": 0.8826
+  }
+}
