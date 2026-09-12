@@ -5,6 +5,7 @@ import {
 } from "react";
 
 import MapView from "../components/MapView";
+import VibrationPanel from "../components/VibrationPanel";
 
 import {
   getLatestLiveMonitoring,
@@ -14,6 +15,7 @@ import {
 type Section =
   | "home"
   | "overview"
+  | "vibration"
   | "map"
   | "alerts"
   | "locations";
@@ -219,6 +221,21 @@ export default function Dashboard() {
 
             <button
               className={
+                activeSection === "vibration"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                scrollToSection(
+                  "vibration",
+                )
+              }
+            >
+              Ground Motion
+            </button>
+
+            <button
+              className={
                 activeSection === "map"
                   ? "active"
                   : ""
@@ -306,11 +323,11 @@ export default function Dashboard() {
           </h2>
 
           <p>
-            Real-time weather monitoring,
-            GIS intelligence, satellite
-            indicators and AI-powered
-            landslide risk analysis for
-            vulnerable regions.
+            Real-time weather, GIS,
+            satellite intelligence and
+            ground-vibration sensor fusion
+            for AI-powered landslide risk
+            analysis in vulnerable regions.
           </p>
 
 
@@ -584,6 +601,26 @@ export default function Dashboard() {
             </article>
 
           )}
+
+        </section>
+
+
+        {/* =================================================
+            GROUND VIBRATION
+        ================================================= */}
+
+        <section
+          id="vibration"
+          className="dashboard-section"
+        >
+
+          <SectionHeader
+            eyebrow="GEOPHONE + ACCELEROMETER NETWORK"
+            title="Ground Vibration Intelligence"
+            description="Filtered X, Y and Z motion signals, explainable anomaly detection and the latest environmental sensor-fusion decision."
+          />
+
+          <VibrationPanel />
 
         </section>
 

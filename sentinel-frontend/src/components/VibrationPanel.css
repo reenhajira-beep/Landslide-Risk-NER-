@@ -1,0 +1,849 @@
+.vibration-panel {
+  display: grid;
+  gap: 12px;
+}
+
+
+.vibration-toolbar {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 2px;
+}
+
+
+.vibration-connection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.vibration-connection-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #51e3a2;
+  box-shadow: 0 0 16px rgba(81, 227, 162, .9);
+  animation: vibrationConnectionPulse 1.8s ease-in-out infinite;
+}
+
+
+.vibration-connection-dot.offline {
+  background: #ff536c;
+  box-shadow: 0 0 16px rgba(255, 83, 108, .8);
+}
+
+
+@keyframes vibrationConnectionPulse {
+  50% {
+    opacity: .55;
+    transform: scale(.82);
+  }
+}
+
+
+.vibration-connection div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+
+.vibration-connection strong {
+  color: #e9edfb;
+  font-size: 9px;
+}
+
+
+.vibration-connection span {
+  color: #747d94;
+  font-size: 7px;
+}
+
+
+.vibration-toolbar > button {
+  padding: 8px 12px;
+  border: 1px solid rgba(101, 215, 255, .16);
+  border-radius: 7px;
+  background: rgba(87, 119, 214, .07);
+  color: #aebfe3;
+  cursor: pointer;
+  font-size: 8px;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+
+.vibration-toolbar > button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(101, 215, 255, .35);
+  color: #ecf6ff;
+}
+
+
+.vibration-toolbar > button:disabled {
+  cursor: wait;
+  opacity: .55;
+}
+
+
+.vibration-inline-error {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 83, 108, .2);
+  border-radius: 8px;
+  background: rgba(255, 83, 108, .06);
+  color: #ef91a0;
+  font-size: 8px;
+}
+
+
+.vibration-loading-state,
+.vibration-empty-state {
+  min-height: 180px;
+  border-radius: 14px;
+}
+
+
+.vibration-loading-state {
+  display: grid;
+  place-items: center;
+  color: #7f8ba5;
+  font-size: 10px;
+}
+
+
+.vibration-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 25px;
+}
+
+
+.vibration-empty-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(94, 220, 255, .24);
+  border-radius: 50%;
+  background: rgba(94, 220, 255, .07);
+  color: #67dcff;
+  font-size: 32px;
+  box-shadow: 0 0 35px rgba(66, 180, 255, .13);
+}
+
+
+.vibration-empty-state h3 {
+  margin: 7px 0 5px;
+  color: #edf2ff;
+  font-size: 15px;
+}
+
+
+.vibration-empty-state p {
+  max-width: 600px;
+  margin: 0;
+  color: #7f889f;
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+
+.vibration-primary-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 12px;
+}
+
+
+.vibration-risk-card {
+  --vibration-accent: #4adf9e;
+  position: relative;
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  padding: 22px;
+  border-radius: 14px;
+}
+
+
+.vibration-risk-card::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -110px;
+  top: -120px;
+  border-radius: 50%;
+  background: var(--vibration-accent);
+  filter: blur(90px);
+  opacity: .13;
+  pointer-events: none;
+}
+
+
+.vibration-risk-card.warning {
+  --vibration-accent: #ffb64d;
+  border-color: rgba(255, 182, 77, .2);
+}
+
+
+.vibration-risk-card.danger {
+  --vibration-accent: #ff536c;
+  border-color: rgba(255, 83, 108, .24);
+}
+
+
+.vibration-risk-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+
+.vibration-location-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+
+.vibration-location-line h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #f4f7ff;
+  font-size: 24px;
+}
+
+
+.vibration-risk-copy > p {
+  margin: 6px 0 0;
+  color: #7f89a1;
+  font-size: 8px;
+}
+
+
+.vibration-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 20px;
+}
+
+
+.vibration-status-row > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .025);
+  color: #98a2b9;
+  font-size: 7px;
+}
+
+
+.vibration-status-row i {
+  width: 5px;
+  height: 5px;
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--vibration-accent);
+  box-shadow: 0 0 8px var(--vibration-accent);
+}
+
+
+.vibration-score-ring {
+  position: relative;
+  z-index: 1;
+  width: 130px;
+  height: 130px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 9px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 24px color-mix(in srgb, var(--vibration-accent) 28%, transparent));
+}
+
+
+.vibration-score-ring > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  border-radius: 50%;
+  background: #070a15;
+}
+
+
+.vibration-score-ring strong {
+  margin-top: 39px;
+  color: #fff;
+  font-size: 34px;
+}
+
+
+.vibration-score-ring span {
+  color: #778197;
+  font-size: 8px;
+}
+
+
+.fusion-summary-card {
+  min-height: 190px;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+
+.fusion-summary-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+
+.fusion-summary-heading h3,
+.vibration-card-heading h3,
+.vibration-insight-card > h3 {
+  margin: 6px 0 0;
+  color: #f0f3ff;
+  font-size: 15px;
+}
+
+
+.fusion-score-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+
+.fusion-score-line > strong {
+  color: #f5f7ff;
+  font-size: 31px;
+}
+
+
+.fusion-score-line > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+
+.fusion-score-line span {
+  overflow: hidden;
+  color: #b7bfd2;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.fusion-score-line small {
+  color: #6f7890;
+  font-size: 7px;
+}
+
+
+.fusion-weight-track {
+  height: 4px;
+  display: flex;
+  overflow: hidden;
+  margin-top: 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .05);
+}
+
+
+.fusion-weight-track span {
+  background: linear-gradient(90deg, #6488ff, #826dff);
+}
+
+
+.fusion-weight-track i {
+  background: linear-gradient(90deg, #b662ff, #e361d3);
+}
+
+
+.fusion-summary-card > p {
+  margin: 6px 0 0;
+  color: #737d95;
+  font-size: 7px;
+}
+
+
+.fusion-alert-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 10px;
+  border: 1px solid rgba(76, 221, 157, .12);
+  border-radius: 8px;
+  background: rgba(76, 221, 157, .05);
+}
+
+
+.fusion-alert-state.active {
+  border-color: rgba(255, 83, 108, .18);
+  background: rgba(255, 83, 108, .06);
+}
+
+
+.fusion-alert-state > span {
+  color: #55dda0;
+  font-size: 15px;
+}
+
+
+.fusion-alert-state.active > span {
+  color: #ff6178;
+}
+
+
+.fusion-alert-state div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+
+.fusion-alert-state strong {
+  color: #dce4f5;
+  font-size: 8px;
+}
+
+
+.fusion-alert-state small {
+  color: #6e788e;
+  font-size: 7px;
+}
+
+
+.fusion-empty {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.fusion-empty strong {
+  color: #a9b8d9;
+  font-size: 10px;
+}
+
+
+.fusion-empty p {
+  margin: 7px 0 0;
+  color: #707b92;
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+
+.vibration-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+
+.vibration-metric-card {
+  padding: 14px;
+  border-radius: 10px;
+}
+
+
+.vibration-metric-card > span {
+  color: #7d879d;
+  font-size: 7px;
+  letter-spacing: .35px;
+  text-transform: uppercase;
+}
+
+
+.vibration-metric-card > div:nth-of-type(1) {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+
+.vibration-metric-card strong {
+  color: #f2f5ff;
+  font-size: 20px;
+}
+
+
+.vibration-metric-card small {
+  color: #77839b;
+  font-size: 7px;
+}
+
+
+.vibration-metric-card p {
+  min-height: 18px;
+  margin: 7px 0 0;
+  color: #687289;
+  font-size: 7px;
+}
+
+
+.vibration-metric-track {
+  height: 3px;
+  overflow: hidden;
+  margin-top: 9px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .06);
+}
+
+
+.vibration-metric-track i {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: #4cdda0;
+  box-shadow: 0 0 9px rgba(76, 221, 160, .35);
+}
+
+
+.vibration-metric-track i.warning {
+  background: #ffb64d;
+  box-shadow: 0 0 9px rgba(255, 182, 77, .35);
+}
+
+
+.vibration-metric-track i.danger {
+  background: #ff536c;
+  box-shadow: 0 0 9px rgba(255, 83, 108, .35);
+}
+
+
+.vibration-metric-track i.frequency {
+  background: linear-gradient(90deg, #5ccfff, #8d75ff);
+  box-shadow: 0 0 9px rgba(92, 207, 255, .35);
+}
+
+
+.vibration-detail-grid {
+  display: grid;
+  grid-template-columns: 1.45fr .85fr;
+  gap: 12px;
+}
+
+
+.vibration-trend-card,
+.vibration-insight-card {
+  padding: 18px;
+  border-radius: 12px;
+}
+
+
+.vibration-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+
+.vibration-card-heading > span {
+  padding: 4px 7px;
+  border-radius: 99px;
+  background: rgba(103, 137, 255, .08);
+  color: #8698c4;
+  font-size: 7px;
+}
+
+
+.vibration-chart {
+  position: relative;
+  height: 150px;
+  margin-top: 20px;
+  padding: 0 8px 20px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+
+
+.vibration-chart-grid {
+  position: absolute;
+  inset: 0 8px 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+
+.vibration-chart-grid span {
+  height: 1px;
+  display: block;
+  border-top: 1px dashed rgba(255, 255, 255, .05);
+  color: #566077;
+  font-size: 6px;
+  line-height: 0;
+}
+
+
+.vibration-bars {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 6px;
+}
+
+
+.vibration-bar-column {
+  height: 100%;
+  min-width: 5px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+
+.vibration-bar {
+  width: min(100%, 18px);
+  min-height: 5px;
+  border-radius: 4px 4px 1px 1px;
+  background: linear-gradient(180deg, #6df0b0, #2aa879);
+  box-shadow: 0 0 12px rgba(82, 224, 161, .18);
+  transition: height .4s ease;
+}
+
+
+.vibration-bar.warning {
+  background: linear-gradient(180deg, #ffc464, #d58926);
+  box-shadow: 0 0 12px rgba(255, 182, 77, .2);
+}
+
+
+.vibration-bar.danger {
+  background: linear-gradient(180deg, #ff7085, #c52f4c);
+  box-shadow: 0 0 12px rgba(255, 83, 108, .22);
+}
+
+
+.vibration-bar-column > span {
+  color: #657087;
+  font-size: 6px;
+}
+
+
+.vibration-axis-grid {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+
+.vibration-axis-row {
+  display: grid;
+  grid-template-columns: 16px 1fr 55px;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.vibration-axis-row > span {
+  color: #7d8aaa;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+
+.vibration-axis-row > div {
+  height: 3px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .05);
+}
+
+
+.vibration-axis-row i {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5b93ff, #d261ef);
+}
+
+
+.vibration-axis-row strong {
+  color: #9aa7bf;
+  font-size: 7px;
+  text-align: right;
+}
+
+
+.vibration-insight-card > h3 {
+  margin-bottom: 15px;
+}
+
+
+.vibration-insight-block {
+  padding: 11px;
+  border: 1px solid rgba(101, 215, 255, .1);
+  border-radius: 9px;
+  background: rgba(101, 215, 255, .035);
+}
+
+
+.vibration-insight-block.actions {
+  margin-top: 8px;
+  border-color: rgba(190, 105, 255, .1);
+  background: rgba(190, 105, 255, .035);
+}
+
+
+.vibration-insight-block > strong {
+  color: #b8c6e0;
+  font-size: 8px;
+}
+
+
+.vibration-insight-block ul {
+  display: grid;
+  gap: 7px;
+  margin: 9px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.vibration-insight-block li {
+  position: relative;
+  padding-left: 12px;
+  color: #7f8aa0;
+  font-size: 7px;
+  line-height: 1.45;
+}
+
+
+.vibration-insight-block li::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  left: 0;
+  top: 4px;
+  border-radius: 50%;
+  background: #65d7ff;
+  box-shadow: 0 0 7px rgba(101, 215, 255, .55);
+}
+
+
+.vibration-insight-block.actions li::before {
+  background: #c270ff;
+  box-shadow: 0 0 7px rgba(194, 112, 255, .55);
+}
+
+
+.vibration-calibration-note {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 182, 77, .13);
+  border-radius: 8px;
+  background: rgba(255, 182, 77, .035);
+}
+
+
+.vibration-calibration-note > span {
+  color: #e4aa58;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+
+.vibration-calibration-note p {
+  margin: 0;
+  color: #8e826f;
+  font-size: 7px;
+  line-height: 1.4;
+}
+
+
+.vibration-calibration-note small {
+  color: #706b66;
+  font-size: 6px;
+  text-align: right;
+}
+
+
+@media (max-width: 1000px) {
+  .vibration-primary-grid,
+  .vibration-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vibration-metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 620px) {
+  .vibration-toolbar,
+  .vibration-risk-card,
+  .vibration-empty-state {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vibration-score-ring {
+    align-self: center;
+  }
+
+  .vibration-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vibration-calibration-note {
+    grid-template-columns: 1fr;
+  }
+
+  .vibration-calibration-note small {
+    text-align: left;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .vibration-connection-dot {
+    animation: none;
+  }
+
+  .vibration-bar {
+    transition: none;
+  }
+}

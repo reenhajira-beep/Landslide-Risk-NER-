@@ -155,8 +155,25 @@ export async function getLiveLocations() {
    PREDICTIONS
 ========================================================= */
 
-export async function getPredictions() {
-  return request(
+export type PredictionRecord = {
+  id: number;
+  location_id: string;
+  rainfall_mm_hr: number;
+  soil_moisture_pct: number;
+  tilt_deg: number;
+  vegetation_change_pct: number;
+  satellite_risk_index: number;
+  risk_score: number;
+  risk_level: string;
+  alert_generated: boolean;
+  model_used: string;
+  predicted_at: string;
+};
+
+
+export async function getPredictions():
+Promise<PredictionRecord[]> {
+  return request<PredictionRecord[]>(
     "/api/v1/predictions",
   );
 }
@@ -298,6 +315,166 @@ export async function updateCommunityReportStatus(
         JSON.stringify({
           status,
         }),
+    },
+  );
+}
+
+
+/* =========================================================
+   GROUND VIBRATION + SENSOR FUSION
+========================================================= */
+
+export type VibrationReading = {
+  id: number;
+  location_id: string;
+  sensor_id: string;
+  sample_rate_hz: number;
+  processing_status: string;
+  vibration_risk_score: number;
+  vibration_risk_level: string;
+  movement_status: string;
+  abnormal_ground_movement: boolean;
+  contributing_factors: string[];
+  recommended_actions: string[];
+  assessment_mode: string;
+  sample_count: number;
+  window_duration_seconds: number;
+  vibration_amplitude: number;
+  rms_vibration: number;
+  peak_acceleration: number;
+  dominant_frequency_hz: number;
+  signal_energy: number;
+  tilt_change_deg: number;
+  x_rms: number;
+  y_rms: number;
+  z_rms: number;
+  captured_at: string;
+  created_at: string;
+};
+
+
+export type VibrationThresholds = {
+  acceleration_unit: string;
+  rms_abnormal_mps2: number;
+  peak_abnormal_mps2: number;
+  tilt_abnormal_deg: number;
+  assessment_mode: string;
+  operational_warning: string;
+};
+
+
+export type VibrationWindowInput = {
+  location_id: string;
+  sensor_id: string;
+  sample_rate_hz: number;
+  x_samples: number[];
+  y_samples: number[];
+  z_samples: number[];
+  tilt_change_deg?: number;
+  captured_at?: string | null;
+};
+
+
+export type SensorFusionPredictionInput =
+  VibrationWindowInput & {
+    rainfall_mm_hr: number;
+    soil_moisture_pct: number;
+    tilt_deg: number;
+    vegetation_change_pct: number;
+    satellite_risk_index: number;
+  };
+
+
+export type SensorFusionPredictionResponse = {
+  prediction_id: number;
+  vibration_reading_id: number;
+  alert_id: number | null;
+  location_id: string;
+  environmental_risk_score: number;
+  environmental_risk_level: string;
+  vibration_risk_score: number;
+  vibration_risk_level: string;
+  fused_risk_score: number;
+  fused_risk_level: string;
+  alert_generated: boolean;
+  human_review_required: boolean;
+  sensor_disagreement: boolean;
+  cross_sensor_corroboration: boolean;
+  fusion_method: string;
+  model_used: string;
+  contributing_factors: string[];
+  recommended_actions: string[];
+  analysis_message: string;
+  vibration_analysis: VibrationReading;
+};
+
+
+export type VibrationReadingFilters = {
+  locationId?: string;
+  sensorId?: string;
+  limit?: number;
+};
+
+
+export async function getVibrationReadings(
+  filters: VibrationReadingFilters = {},
+): Promise<VibrationReading[]> {
+  const parameters = new URLSearchParams();
+
+  if (filters.locationId) {
+    parameters.set(
+      "location_id",
+      filters.locationId,
+    );
+  }
+
+  if (filters.sensorId) {
+    parameters.set(
+      "sensor_id",
+      filters.sensorId,
+    );
+  }
+
+  parameters.set(
+    "limit",
+    String(filters.limit ?? 12),
+  );
+
+  return request<VibrationReading[]>(
+    `/api/v1/vibration/readings?${parameters.toString()}`,
+  );
+}
+
+
+export async function getVibrationThresholds():
+Promise<VibrationThresholds> {
+  return request<VibrationThresholds>(
+    "/api/v1/vibration/thresholds",
+  );
+}
+
+
+export async function analyzeVibration(
+  data: VibrationWindowInput,
+): Promise<VibrationReading> {
+  return request<VibrationReading>(
+    "/api/v1/vibration/analyze",
+    {
+      method: "POST",
+      body: JSON.stringify(data),
+    },
+  );
+}
+
+
+export async function createSensorFusionPrediction(
+  data: SensorFusionPredictionInput,
+): Promise<SensorFusionPredictionResponse> {
+  return request<SensorFusionPredictionResponse>(
+    "/api/v1/vibration/fusion-predict",
+    {
+      method: "POST",
+      body: JSON.stringify(data),
     },
   );
 }
