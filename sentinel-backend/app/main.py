@@ -1,4 +1,5 @@
 import asyncio
+from app.routers.vibration import router as vibration_router
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from typing import Literal
@@ -741,13 +742,23 @@ app = FastAPI(
     description=(
         "AI-powered landslide prediction, "
         "automatic live weather monitoring, "
-        "early warning and community reporting API."
+        "ground-vibration analysis, early warning "
+        "and community reporting API."
     ),
 
-    version="3.0.0",
+    version="3.1.0",
 
     lifespan=lifespan,
 )
+
+
+# =========================================================
+# GROUND-VIBRATION ROUTER
+# =========================================================
+
+# Adds POST /api/v1/vibration/analyze without changing
+# the existing prediction, alert or monitoring endpoints.
+app.include_router(vibration_router)
 
 
 # =========================================================
@@ -790,7 +801,7 @@ def home():
             "SENTINEL-NER backend is running",
 
         "version":
-            "3.0.0",
+            "3.1.0",
 
         "live_monitoring":
             True,
@@ -827,6 +838,9 @@ def health_check():
             "enabled",
 
         "automatic_collection":
+            "enabled",
+
+        "ground_vibration":
             "enabled",
 
         "collection_interval_seconds":
