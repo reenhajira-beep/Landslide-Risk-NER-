@@ -1,5 +1,6 @@
 import asyncio
 from app.routers.vibration import router as vibration_router
+from app.routers.satellite import router as satellite_router
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from typing import Literal
@@ -25,6 +26,8 @@ from app.database.models import (
 )
 from app.services.model_service import model_service
 from app.services.risk_agent import landslide_agent
+from app.services.imerg_service import imerg_service
+from app.services.satellite_collector import satellite_collection_loop
 
 
 # =========================================================
@@ -711,6 +714,22 @@ async def lifespan(
         live_monitoring_loop()
     )
 
+    satellite_task = None
+
+    if imerg_service.should_auto_collect:
+        satellite_task = asyncio.create_task(
+            satellite_collection_loop()
+        )
+
+        print(
+            "[SENTINEL] NASA GPM IMERG collection started."
+        )
+    else:
+        print(
+            "[SENTINEL] NASA GPM IMERG collector is "
+            f"{imerg_service.get_status()['status']}."
+        )
+
     print(
         "[SENTINEL] Automatic live monitoring started."
     )
@@ -727,6 +746,15 @@ async def lifespan(
         except asyncio.CancelledError:
             pass
 
+        if satellite_task is not None:
+            satellite_task.cancel()
+
+            try:
+                await satellite_task
+
+            except asyncio.CancelledError:
+                pass
+
         print(
             "[SENTINEL] Live monitoring stopped."
         )
@@ -742,11 +770,12 @@ app = FastAPI(
     description=(
         "AI-powered landslide prediction, "
         "automatic live weather monitoring, "
+        "NASA GPM IMERG satellite rainfall, "
         "ground-vibration analysis, early warning "
         "and community reporting API."
     ),
 
-    version="3.1.0",
+    version="3.2.0",
 
     lifespan=lifespan,
 )
@@ -759,6 +788,9 @@ app = FastAPI(
 # Adds POST /api/v1/vibration/analyze without changing
 # the existing prediction, alert or monitoring endpoints.
 app.include_router(vibration_router)
+
+# Adds the NASA GPM IMERG satellite rainfall data server.
+app.include_router(satellite_router)
 
 
 # =========================================================
@@ -801,7 +833,7 @@ def home():
             "SENTINEL-NER backend is running",
 
         "version":
-            "3.1.0",
+            "3.2.0",
 
         "live_monitoring":
             True,
@@ -811,6 +843,9 @@ def home():
 
         "monitoring_locations":
             len(LIVE_LOCATIONS),
+
+        "satellite_rainfall":
+            imerg_service.get_status()["status"],
 
         "docs":
             "/docs",
@@ -842,6 +877,9 @@ def health_check():
 
         "ground_vibration":
             "enabled",
+
+        "satellite_rainfall":
+            imerg_service.get_status()["status"],
 
         "collection_interval_seconds":
             LIVE_COLLECTION_INTERVAL_SECONDS,
